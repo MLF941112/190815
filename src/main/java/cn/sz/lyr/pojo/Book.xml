@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sz.lyr.dao.IBookDAO" >
+	
+	<select id="findallbook" resultType="cn.sz.lyr.pojo.Book">
+		select 
+			bookid, 
+			book_name as bookName, 
+			public_dept as publicDept, 
+			book_price as bookPrice, 
+			public_date as publicDate, 
+			book_auth as bookAuth, 
+			img_path as imgPath, 
+			summary 
+		from book
+	</select>
+	
+	<select id="findBookById" parameterType="java.lang.Integer" resultType="cn.sz.lyr.pojo.Book"  >
+		select 
+			bookid, 
+			book_name as bookName, 
+			public_dept as publicDept, 
+			book_price as bookPrice, 
+			public_date as publicDate, 
+			book_auth as bookAuth, 
+			img_path as imgPath, 
+			summary 
+		from book where bookid=#{bookid}
+	</select>
+	
+	<insert id="insertBook" parameterType="cn.sz.lyr.pojo.Book">
+		insert into 
+		book(bookid,book_name,public_dept,book_price,public_date,book_auth,img_path,summary) 
+		values(#{bookid},#{book_name},#{public_dept},#{book_price},#{public_date},#{book_auth},#{img_path},#{summary});
+	</insert>
+	
+	<select id="findPriceByBookid" parameterType="java.lang.Integer" resultType="java.lang.Double" >
+		select book_price as bookPrice from book where bookid=#{bookid}
+	</select>
+</mapper>

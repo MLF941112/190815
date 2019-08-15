@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sz.lyr.dao.IAccountDAO">
+	<select id="findAccByUserid" parameterType="java.lang.Integer" resultType="cn.sz.lyr.pojo.Account">
+		select accid, accname, balance, userid from t_account 
+		where userid=#{userid}
+	</select>
+	
+	<select id="findBalanceByAccid" parameterType="java.lang.Integer" resultType="java.lang.Double">
+		select balance from t_account where accid=#{accid}
+	</select>
+	
+	<update id="changeBalance" parameterType="java.util.Map" >
+		update t_account set balance=#{newmoney} where accid=#{accid}
+	</update>
+</mapper>
